@@ -27,4 +27,34 @@ Förstå hur frontendfilerna ska organiseras i projektet och att tydliggöra vå
 5. Vem behöver hjälp?
 6. Behöver dagens plan ändras?
 
+---
+
+## Daily Scrum – 2026/10/14
+
+Inför idag har vi i teamet skapat ett chen diagram och översatt det till ett crow foot diagram. Vi har även skapat en arbetsbok i excelark. 
+
+### Framsteg mot sprintmålet
+
+Se över backloggen och kopplat minst tre user stories.
+
+### Arbete till nästa avstämning
+
+Koppla datamodellen till user stories och kundvärde. 
+
+### Hinder eller risker
+
+Nej.
+
+### Hjälp eller beslut som behövs
+
+Ingen. 
+
+### Förändring i planen eller tavlan
+Troligtvis.
+
+1. Vad har blivit klart sedan förra tillfället?
+2. Vad ska teamet göra idag för att närma sig sprintmålet?
+3. Finns hinder, risker eller oklara modellbeslut?
+4. Vem behöver hjälp eller review?
+5. Behöver planen, prioriteringen eller tavlan ändras?
 
