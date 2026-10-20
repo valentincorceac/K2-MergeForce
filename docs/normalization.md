@@ -7,9 +7,9 @@
 - **Antaganden och verksamhetsregler:**
   - Ett evenemang tillhör exakt en kategori, en plats och en arrangör.
   - En besökare kan anmäla sig till många evenemang, och ett evenemang kan ha många besökare (N:M), vilket löses med kopplingsentiteten Registration.
-- **Före-modell v1:** [länk till den platta FöreLäge-tabellen / diagram]
-- **Efter-modell v2:** [länk till det normaliserade ER-diagrammet]
-- **Exempeldata:** docs/normalisering-exempel.xlsx (flikar v1_ och v2_)
+- **Före-modell v1:** [Före-läge ER-diagram](FörelägeERD.png)
+- **Efter-modell v2:** [Efter-läge ER-diagram](ERDmodel.png)
+- **Exempeldata:** [normalisering-exempel.xlsx](normalisering-exempel_1%20(1).xlsx)
 
 ---
 
