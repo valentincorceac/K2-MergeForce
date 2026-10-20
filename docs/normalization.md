@@ -9,7 +9,7 @@
   - En besökare kan anmäla sig till många evenemang, och ett evenemang kan ha många besökare (N:M), vilket löses med kopplingsentiteten Registration.
 - **Före-modell v1:** [Före-läge ER-diagram](FörelägeERD.png)
 - **Efter-modell v2:** [Efter-läge ER-diagram](ERDmodel.png)
-- **Exempeldata:** [normalisering-exempel.xlsx](normalisering-exempel_1%20(1).xlsx)
+- **Exempeldata:** [normalisering-exempel.xlsx](normalisering-exempel_1.xlsx)
 
 ---
 
