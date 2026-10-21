@@ -1,1 +1,75 @@
 
+CREATE DATABASE EventFlowDB;
+
+CREATE TABLE Category 
+( 
+	CategoryId INT PRIMARY KEY IDENTITY(1 ,1), 
+	CategoryName NVARCHAR(50) NOT NULL
+)
+
+CREATE TABLE Venue
+(
+	VenueId INT PRIMARY KEY IDENTITY (1, 1), 
+	VenueName NVARCHAR(50) NOT NULL,
+	VenueAddress NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Organizer 
+(
+	OrganizerId INT PRIMARY KEY IDENTITY (1,1),
+	OrganizerName NVARCHAR(100) NOT NULL,
+	Email NVARCHAR(100) NOT NULL
+)
+
+CREATE TABLE Visitor
+(
+	VisitorId INT PRIMARY KEY IDENTITY (1,1),
+	VisitorName NVARCHAR(100) NOT NULL,
+	Email NVARCHAR(100) NOT NULL,
+	Phonenummer NVARCHAR(30) NOT NULL
+)
+
+CREATE TABLE EventFlow
+(
+	EventId INT PRIMARY KEY IDENTITY (1,1),
+	Title NVARCHAR(100) NOT NULL,
+	EventDate DATETIME2 NOT NULL, 
+	StartAt DATETIME2 Not NULL,
+	EventDescription NVARCHAR(250) NOT NULL,
+	CategoryId INT NOT NULL,
+	VenueId INT NOT NULL,
+	OrganizerId INT NOT NULL,
+
+FOREIGN KEY (CategoryId) 
+	REFERENCES Category (CategoryId),
+
+FOREIGN KEY (VenueId) 
+	REFERENCES Venue (VenueId),
+
+FOREIGN KEY (OrganizerId)
+	REFERENCES Organizer (OrganizerId)
+)
+
+CREATE TABLE Registration
+(
+	RegistrationId INT PRIMARY KEY IDENTITY (1,1),
+	RegisteredAt DATETIME2 NOT NULL,
+	VisitorId INT NOT NULL,
+	EventId INT NOT NULL,
+
+FOREIGN KEY (VisitorId)
+	REFERENCES Visitor (VisitorId),
+
+FOREIGN KEY (EventId)
+	REFERENCES EventFlow (EventId)
+)
+
+-- Kontrollera att alla sex tabeller finns.
+
+SELECT TABLE_NAME
+FROM INFORMATION_SCHEMA.TABLES
+WHERE TABLE_SCHEMA = 'dbo'
+AND TABLE_TYPE = 'BASE TABLE'
+ORDER BY TABLE_NAME;
+
+
