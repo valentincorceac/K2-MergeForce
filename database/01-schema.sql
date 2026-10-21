@@ -1,25 +1,27 @@
-
 CREATE DATABASE EventFlowDB;
-
+GO
+USE EventFlowDB;
+GO
+-- then your CREATE TABLE statements
 CREATE TABLE Category 
 ( 
 	CategoryId INT PRIMARY KEY IDENTITY(1 ,1), 
 	CategoryName NVARCHAR(50) NOT NULL
-)
+);
 
 CREATE TABLE Venue
 (
 	VenueId INT PRIMARY KEY IDENTITY (1, 1), 
 	VenueName NVARCHAR(50) NOT NULL,
 	VenueAddress NVARCHAR(100) NOT NULL
-)
+);
 
 CREATE TABLE Organizer 
 (
 	OrganizerId INT PRIMARY KEY IDENTITY (1,1),
 	OrganizerName NVARCHAR(100) NOT NULL,
 	Email NVARCHAR(100) NOT NULL
-)
+);
 
 CREATE TABLE Visitor
 (
@@ -27,7 +29,7 @@ CREATE TABLE Visitor
 	VisitorName NVARCHAR(100) NOT NULL,
 	Email NVARCHAR(100) NOT NULL,
 	Phonenummer NVARCHAR(30) NOT NULL
-)
+);
 
 CREATE TABLE EventFlow
 (
@@ -48,7 +50,7 @@ FOREIGN KEY (VenueId)
 
 FOREIGN KEY (OrganizerId)
 	REFERENCES Organizer (OrganizerId)
-)
+);
 
 CREATE TABLE Registration
 (
@@ -62,7 +64,7 @@ FOREIGN KEY (VisitorId)
 
 FOREIGN KEY (EventId)
 	REFERENCES EventFlow (EventId)
-)
+);
 
 -- Kontrollera att alla sex tabeller finns.
 
