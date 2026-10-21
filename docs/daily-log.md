@@ -52,9 +52,37 @@ Ingen.
 ### Förändring i planen eller tavlan
 Troligtvis.
 
+---
+
+## Daily Scrum 2026/10/21
+
+Inför idag har vi i teamet färdigställt Normalization.md och påbörjat arbetet med backloggen
+
+### Framsteg mot sprintmålet
+
+Förfina backologgen och dela upp i mindre delar. Planera SQL schema/tabeller
+
+### Arbete till nästa avstämning
+
+Skapa SQL schema/tabeller samt testköra. 
+
+### Hinder eller risker
+
+Tidsbrist.
+
+### Hjälp eller beslut som behövs
+
+Om en besökare ska kunna boka flera biljetter till ett evenemang. 
+Om vi ska ha en familjekonto
+
+### Förändring i planen eller tavlan
+
+Uppdaterat backloggen med nya user stories samt sub-issue.
+
+---
+
 1. Vad har blivit klart sedan förra tillfället?
 2. Vad ska teamet göra idag för att närma sig sprintmålet?
 3. Finns hinder, risker eller oklara modellbeslut?
 4. Vem behöver hjälp eller review?
 5. Behöver planen, prioriteringen eller tavlan ändras?
-
