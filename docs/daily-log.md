@@ -86,3 +86,24 @@ Uppdaterat backloggen med nya user stories samt sub-issue.
 3. Finns hinder, risker eller oklara modellbeslut?
 4. Vem behöver hjälp eller review?
 5. Behöver planen, prioriteringen eller tavlan ändras?
+
+## Daily Scrum 2026/10/28
+
+### Vad är Done sedan senaste avstämningen?
+Normaliseringen och testdatan 
+
+### Vad behöver avslutas idag?
+Skapat och testat en liten mängdsäker trigger, views och stored procedure. WIP frontend. 
+
+### Finns hinder i SQL-, trigger- eller frontendarbetet?
+
+Tidsbrist 
+
+### Väntar något på review?
+
+Testdatan ska flyttas över till Done. 
+
+### Behöver WIP, ansvar eller prioritering ändras?
+
+Ja, inför frontend. 
+
