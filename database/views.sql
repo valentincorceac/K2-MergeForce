@@ -14,7 +14,7 @@
 USE EventFlowDB
 GO
 
-ALTER VIEW dbo.vw_EventOverview
+CREATE VIEW dbo.vw_EventOverview
 AS
 SELECT
     e.EventId,
@@ -26,7 +26,7 @@ SELECT
     v.VenueName,
     v.VenueAddress,
     o.OrganizerName,
-    o.Email AS organizerEmail
+    o.Email AS OrganizerEmail
 FROM dbo.EventFlow AS e
 INNER JOIN dbo.Category AS c
     ON c.CategoryId = e.CategoryId
