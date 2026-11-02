@@ -1,0 +1,38 @@
+.site-header {
+    background-color:rgb(17, 151, 62);
+    margin: 0;
+    text-align:center;
+}
+body {
+    margin: 0;
+    background-color:floralwhite;
+    color:#ca3030;
+    font-family: arial, sans-serif;
+    line-height: normal;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    padding: 15px;
+}
+nav a {
+    color:aquamarine;
+    text-decoration: none;
+}
+
+main {
+    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+#Event {
+    flex: 1;
+    flex-direction: row;
+    border: 2px solid black;
+    border-radius: 1rem;
+    background-color:antiquewhite;
+    height: 30%;
+    width: 30%;
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Page Title</title>
+        <script src="app.js" defer></script>
+        <script src="app.js" defer></script>
+        <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>EventFlow</h1>
+        <p>**This is a paragraph.**</p>
+        <nav aria-label="Huvudmeny">
+            <ul>
+                <li><a href="#Event">Evenemang</a></li>
+                <li><a href="#About">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="Event">
+            <div class="eventlist">
+                <h2>Code night</h2>
+                <p>**This is a paragraph.**</p>
+                <img src="" alt="Detta är en bild">
+                <details open>
+                <summary>Event Details</summary>
+                    <div class="event-details">
+                        <p>Date: 2024-06-15</p>
+                        <p>Time: 18:00 - 22:00</p>
+                        <p>Location: Tech Hub, Main Street</p>
+                        <p>Arrangör: Code clubAB</p>
+                        <p>Description: Join us for an exciting night of coding, collaboration, and learning. Bring your laptop and your ideas!</p>
+                    </div>
+                    <div class="event-footer">
+                        <button type="button" class="btn">Anmälan</button>
+                    </div>
+                </details>
+            
+        </section>
+
+        <section id="Event">
+            <h2>Game night</h2>
+            <p>**This is a paragraph.**</p>
+            <img src="picturesadd/event2.jp" alt="Detta är en bild">
+            <details open>
+                <summary>Event Details</summary>
+                <div class="event-details">
+                    <p>Date: 2024-06-15</p>
+                    <p>Time: 18:00 - 22:00</p>
+                    <p>Location: Tech Hub, Main Street</p>
+                    <p>Arrangör: Game clubAB</p>
+                    <p>Description: Join us for an exciting night of coding, collaboration, and learning. Bring your laptop and your ideas!</p>
+                </div>
+                <div class="event-footer">
+                    <button type="button" class="btn">Anmälan</button>
+                </div>
+                
+            </details>
+        </section>
+        <section id="Event">
+            <h2>Movie night</h2>
+            <p>**This is a paragraph.**</p>
+            <img src="picturesadd/event3.jp" alt="Detta är en bild">
+            <details open>
+                <summary>Event Details</summary>
+                <div class="event-details">
+                    <p>Date: 2024-06-15</p>
+                    <p>Time: 18:00 - 22:00</p>
+                    <p>Location: Tech Hub, Main Street</p>
+                    <p>Arrangör: musikföreningen</p>
+                    <p>Description: Join us for an exciting night of coding, collaboration, and learning. Bring your laptop and your ideas!</p>
+                </div>
+                <div class="event-footer">
+                    <button type="button" class="btn">Anmälan</button>
+                </div>
+                
+            </details>
+        </section>
+        <section id="contact">
+            <h2>Kontakta oss</h2>
+            <p>**This is a paragraph.**</p>
+        </div>
+        </section>
+        <form>
+            <div class="form-group">
+            <label for="name">Namn:</label>
+            <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+            <label for="email">E-post:</label>
+            <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+            <label for="message">Meddelande:</label>
+            <textarea id="message" name="message" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="selectEvent">Välj evenemang:</label>
+                <select id="selectEvent" name="selectEvent" required>
+                    <option value="">Välj ett evenemang</option>
+                    <option value="code-night">Code night</option>
+                    <option value="game-night">Game night</option>
+                    <option value="movie-night">Movie night</option>
+                    
+                </select>
+            </div>
+            <button type="submit" class="btn">Skicka</button>
+            </div>
+        </form>
+    </main>
+    <footer class="footer-content">
+            <p>&copy; 2026 EventFlow. All rights reserved.</p>
+
+    </footer>
+</body>
+</html>
