@@ -107,3 +107,25 @@ Testdatan ska flyttas över till Done.
 
 Ja, inför frontend. 
 
+
+
+## Daily Scrum 2026/11/04
+
+### Framsteg mot sprintmålet    
+Vi har bockat av förra veckans sprint goals. 
+
+### Pågående arbete
+Vi har en user story som pågående - Skapa en filtrering och sökruta för evenemang. 
+
+### hinder och risker
+Tidsbrist, frånvaro, kunskapslucka som kräver inläsning. 
+Vi har lyft frågan om att skapa tydligare user storys för att få till mindre tasks och feather branches. 
+
+### Behov av hjälp eller review
+Nej, inget i dagsläget. 
+
+### Anpassning av planen
+Förbättra sidans användarvänlighet. 
+Tagit bort besökarens inloggning från "Anmäla sig till ett evenemang". 
+
+
