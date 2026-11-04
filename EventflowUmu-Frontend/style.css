@@ -1,0 +1,61 @@
+/* Placerar länkarna i menyn bredvid varandra. */
+nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 15px;
+}
+
+/* Placerar korten bredvid varandra när det finns plats. */
+.event-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+/* Utseende och flexibel storlek för varje kort. */
+.eventlist {
+    box-sizing: border-box;
+    flex: 1 1 250px;
+    min-width: 0;
+    padding: 16px;
+    border: 2px solid black;
+    border-radius: 16px;
+    background-color: antiquewhite;
+}
+
+/* Ger bilderna samma storlek. */
+.eventlist img {
+    display: block;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Gör detaljerna klickbara. */
+summary {
+    cursor: pointer;
+}
+
+/* Avstånd mellan formulärfälten. */
+.form-group {
+    margin-bottom: 16px;
+}
+
+/* Anpassar menyn för mobil. */
+@media (max-width: 650px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+ 
+ 
+ 
+ 
