@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 feedback.classList.remove("success");
                 return;
             }
-// 3. Bekräftelse vid giltig inmatning (ersätter tidigare felmeddelanden)
-            feedback.textContent = Tack ${name} du har valt ${session}, E-postadress: ${email}.;
+            // 3. Bekräftelse vid giltig inmatning (ersätter tidigare felmeddelanden)
+            feedback.textContent = `Tack ${name}. du har valt ${session}. E-postadress: ${email}.`;
             feedback.classList.add("success");
             feedback.classList.remove("error");
 
