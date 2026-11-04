@@ -45,7 +45,21 @@ summary {
 .form-group {
     margin-bottom: 16px;
 }
+#feedback.success {
+    color: #2e7d32;
+    background-color: #e8f5e9;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
 
+#feedback.error {
+    color: #c62828;
+    background-color: #ffebee;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
 /* Anpassar menyn för mobil. */
 @media (max-width: 650px) {
     nav ul {
