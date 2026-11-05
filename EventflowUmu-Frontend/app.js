@@ -2,7 +2,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const bookingForm = document.querySelector("#booking form");
-    const feedback = document.getElementById("feedback");
+    const feedback  = document.getElementById("feedback");
+    const list      = document.querySelector(".event-list");
+    const dialog    = document.querySelector("#eventDialog");
+    const content   = document.querySelector("#dialogContent");
 
     //Event Data as objects
     const events = [
@@ -19,16 +22,15 @@ document.addEventListener("DOMContentLoaded", () => {
             organizer: "Code Club AB",
             description: "Spela hela natten!"},
         {
-            id: 1, title: "Movie Night", image: "picturesadd/event3.jpg",
+            id: 3, title: "Movie Night", image: "picturesadd/event3.jpg",
             date: "2026-06-15", time: "18:00–22:00",
             location: "Tech Hub, Main Street", category: "Teknik",
             organizer: "Code Club AB",
             description: "Se film hela kvällen!"}
     ];
-    const list   = document.querySelector(".event-list");
-    const dialog = document.querySelector("#eventDialog");
-    const content = document.querySelector("#dialogContent");
 
+    
+    //Loops through each Array object and build a card in the HTML
     events.forEach(ev => {
         const card = document.createElement("article");
         card.className = "eventlist";
@@ -38,23 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
         list.appendChild(card);
     });
     
-    document.getElementById("closeDialog")
-        .addEventListener("click", () => dialog.close());
+    document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
 
     function openDialog(ev) {
-    content.innerHTML = `
-        <h2>${ev.title}</h2>
-        <dl class="event-details">
-            <dt>Datum</dt><dd>${ev.date}</dd>
-            <dt>Tid</dt><dd>${ev.time}</dd>
-            <dt>Plats</dt><dd>${ev.location}</dd>
-            <dt>Kategori</dt><dd>${ev.category}</dd>
-            <dt>Arrangör</dt><dd>${ev.organizer}</dd>
-        </dl>
-        <p>${ev.description}</p>
-        <button type="button" class="btn">Anmälan</button>`;
-    dialog.showModal();   // <-- browser handles the overlay
-}
+        content.innerHTML = `
+            <h2>${ev.title}</h2>
+            <dl class="event-details">
+                <dt>Datum</dt><dd>${ev.date}</dd>
+                <dt>Tid</dt><dd>${ev.time}</dd>
+                <dt>Plats</dt><dd>${ev.location}</dd>
+                <dt>Kategori</dt><dd>${ev.category}</dd>
+                <dt>Arrangör</dt><dd>${ev.organizer}</dd>
+            </dl>
+            <p>${ev.description}</p>
+            <button type="button" class="btn">Anmälan</button>`;
+        dialog.showModal();   // <-- browser handles the overlay
+    }
 
 
     if (bookingForm && feedback) {
