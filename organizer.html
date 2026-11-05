@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- Mahmoud: Ny sida tillagd i vidareutvecklingen med AI-stöd. Gemensamt sidhuvud och sidfot återanvänder teamets struktur. Ingen riktig inloggning eller serverlagring finns här. -->
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Arrangörsvy – EventFlow</title>
+
+    <!-- Mahmoud: Återanvänder samma CSS för ett gemensamt utseende på webbplatsen. -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Mahmoud: defer kör arrangörskoden efter att HTML har lästs så att fälten finns i DOM. -->
+    <script src="organizer.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>EventFlow</h1>
+
+        <nav aria-label="Huvudmeny">
+            <ul>
+                <li>
+                    <a href="index.html">Till startsidan</a>
+                </li>
+
+                <li>
+                    <a href="login.html">Till arrangörssidan</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mahmoud: Båda sektionerna ligger inom sidans huvudinnehåll. -->
+    <!-- Båda sektionerna ligger inom sidans huvudinnehåll. -->
+    <!-- Mahmoud: Samlar båda sektionerna inom main. Klassen ger två kolumner på bred skärm och en på smal skärm. -->
+    <main class="organizer-layout">
+
+        <!-- Mahmoud: Lista med sparade evenemang och hanteringsknappar. -->
+        <!-- Lista med sparade evenemang och hanteringsknappar. -->
+        <section aria-labelledby="manage-events-title">
+            <h2 id="manage-events-title">Hantera evenemang</h2>
+
+            <p>Redigera eller ta bort ett sparat evenemang.</p>
+
+            <div id="managed-events" class="event-list"></div>
+        </section>
+
+        <!-- Mahmoud: Samma formulär används för att skapa och redigera. -->
+        <!-- Samma formulär används för att skapa och redigera. -->
+        <section id="create-event" aria-labelledby="create-event-title">
+            <h2 id="create-event-title">Skapa ett evenemang</h2>
+
+            <p>
+                Evenemang sparas lokalt i den här webbläsaren.
+                Riktig inloggning och serverlagring är ännu
+                inte implementerade.
+            </p>
+
+            <form id="create-event-form" novalidate>
+                <fieldset>
+                    <legend>Uppgifter om evenemanget</legend>
+
+                    <!-- Mahmoud: Evenemangets titel. -->
+                    <!-- Evenemangets titel. -->
+                    <div class="form-group">
+                        <label for="event-title">Titel:</label>
+
+                        <input
+                            type="text"
+                            id="event-title"
+                            name="title"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <!-- Mahmoud: Evenemangets datum. -->
+                    <!-- Evenemangets datum. -->
+                    <div class="form-group">
+                        <label for="event-date">Datum:</label>
+
+                        <input
+                            type="date"
+                            id="event-date"
+                            name="date"
+                            required
+                        >
+                    </div>
+
+                    <!-- Mahmoud: Start- och sluttid gör att besökaren ser när evenemanget börjar och slutar. -->
+                    <div class="form-group">
+                        <label for="event-start-time">Starttid:</label>
+                        <input type="time" id="event-start-time" name="startTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="event-end-time">Sluttid:</label>
+                        <input type="time" id="event-end-time" name="endTime" required>
+                    </div>
+
+                    <!-- Mahmoud: En kort beskrivning visas på kortet precis som för teamets evenemang. -->
+                    <div class="form-group">
+                        <label for="event-description">Beskrivning:</label>
+                        <textarea id="event-description" name="description" maxlength="500" rows="3" placeholder="Beskriv evenemanget kort"></textarea>
+                    </div>
+
+                    <!-- Mahmoud: Platsen där evenemanget hålls. -->
+                    <!-- Platsen där evenemanget hålls. -->
+                    <div class="form-group">
+                        <label for="event-place">Plats:</label>
+
+                        <input
+                            type="text"
+                            id="event-place"
+                            name="place"
+                            maxlength="150"
+                            required
+                        >
+                    </div>
+
+                    <!-- Mahmoud: Befintliga kategorier och alternativet Annat. -->
+                    <!-- Befintliga kategorier och alternativet Annat. -->
+                    <div class="form-group">
+                        <label for="event-category">Kategori:</label>
+
+                        <select
+                            id="event-category"
+                            name="category"
+                            required
+                        >
+                            <option value="">Välj en kategori</option>
+                            <option value="Teknik">Teknik</option>
+                            <option value="Musik">Musik</option>
+                            <option value="Kultur">Kultur</option>
+                            <option value="Spel">Spel</option>
+                            <option value="Film">Film</option>
+                            <option value="other">
+                                Annat – ange kategori
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Mahmoud: JavaScript visar fältet när Annat väljs. -->
+                    <!-- JavaScript visar fältet när Annat väljs. -->
+                    <div
+                        class="form-group"
+                        id="custom-category-group"
+                        hidden
+                    >
+                        <label for="custom-category">Ange kategori:</label>
+
+                        <input
+                            type="text"
+                            id="custom-category"
+                            name="customCategory"
+                            maxlength="50"
+                            disabled
+                        >
+                    </div>
+
+                    <!-- Mahmoud: Bildval och förhandsvisning. -->
+                    <!-- Bildval och förhandsvisning. -->
+                    <div class="form-group">
+                        <label for="event-image">
+                            Bild för evenemanget:
+                        </label>
+
+                        <input
+                            type="file"
+                            id="event-image"
+                            name="image"
+                            accept="image/jpeg,image/png,image/webp"
+                            aria-describedby="image-help"
+                            required
+                        >
+
+                        <p id="image-help">
+                            Välj JPG, PNG eller WebP, högst 5 MB.
+                            Mindre bilder rekommenderas eftersom
+                            webbläsarens lagringsutrymme är begränsat.
+                        </p>
+
+                        <img
+                            id="image-preview"
+                            alt="Förhandsvisning av vald evenemangsbild"
+                            hidden
+                        >
+                    </div>
+
+                    <button type="submit" class="btn">
+                        Publicera evenemang
+                    </button>
+
+                    <!-- Mahmoud: JavaScript lägger till Avbryt redigering här. -->
+                    <!-- JavaScript lägger till Avbryt redigering här. -->
+                </fieldset>
+
+                <!-- Mahmoud: Felmeddelanden och bekräftelser. -->
+                <!-- Felmeddelanden och bekräftelser. -->
+                <p
+                    id="create-event-feedback"
+                    role="status"
+                    aria-live="polite"
+                ></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer-content">
+        <p>&copy; 2026 EventFlow – Skolprojekt.</p>
+    </footer>
+</body>
+</html>

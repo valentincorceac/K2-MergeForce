@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>EventFlow</title>
+
+    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <h1>EventFlow</h1>
+        <p>Hitta ditt nästa evenemang.</p>
+
+        <nav aria-label="Huvudmeny">
+            <ul>
+                <li><a href="#Event">Evenemang</a></li>
+                <!-- Mahmoud: Lägger till en direktlänk till besökarens anmälningsformulär utan krav på konto. -->
+                <li><a href="#booking">Anmäl dig</a></li>
+                <li><a href="#About">Om oss</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <!-- Mahmoud: Länkar till den separata arrangörsingången. Länken ger ingen autentisering. -->
+                <li><a href="login.html">Arrangör – Logga in</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>filtrering för användare</section>
+
+    
+        
+        <section id="Event">
+            <h2>Evenemang</h2>
+
+            <!-- Samlar alla evenemangskort i samma behållare. -->
+            <div class="event-list">
+
+                <article class="eventlist">
+                    <h3>Code night</h3>
+                    <p>En kväll med programmering och samarbete.</p>
+
+                    <!-- Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel. -->
+                    <img src="picturesadd/event1.png" alt="Bild för Code night">
+
+                    <details>
+                        <summary>Evenemang Detaljer</summary>
+
+                        <div class="event-details">
+                            <p>Date: 2024-06-15</p>
+                            <p>Time: 18:00 - 22:00</p>
+                            <p>Location: Tech Hub, Main Street</p>
+                            <p>Arrangör: Code clubAB</p>
+                            <p>
+                                Description: Join us for an exciting night
+                                of coding, collaboration, and learning.
+                                Bring your laptop and your ideas!
+                            </p>
+                        </div>
+
+                        <div class="event-footer"><a href="#booking">Anmälan</a></div>
+                    </details>
+                </article>
+
+                <article class="eventlist">
+                    <h3>Game night</h3>
+                    <p>Träffa andra och spela tillsammans.</p>
+
+                    <!-- Mahmoud: Anpassar sökvägen till PNG-bilden för Game night. -->
+                    <img
+                        src="picturesadd/event2.png"
+                        alt="Bild för Game night"
+                    >
+
+                    <details>
+                        <summary>Evenemang Detaljer</summary>
+
+                        <div class="event-details">
+                            <p>Datum: 2024-06-15</p>
+                            <p>Tid: 18:00 - 22:00</p>
+                            <p>Plats: Tech Hub, Main Street</p>
+                            <p>Arrangör: Game clubAB</p>
+                            <p>
+                                Detaljer: Spela hela natten!
+                            </p>
+                        </div>
+
+                        <div class="event-footer">
+                            <a href="#booking">Anmälan</a>
+                        </div>
+                    </details>
+                </article>
+
+                <article class="eventlist">
+                    <h3>Movie night</h3>
+                    <p>Se en film tillsammans med andra.</p>
+
+                    <!-- Mahmoud: Anpassar bildsökvägen till PNG-bilden för Movie night. -->
+                    <img src="picturesadd/event3.png" alt="Bild för Movie night">
+                    <details>
+                        <summary>Evenemang Detaljer</summary>
+
+                        <div class="event-details">
+                            <p>Datum: 2024-06-15</p>
+                            <p>Tid: 18:00 - 22:00</p>
+                            <p>Plats: Tech Hub, Main Street</p>
+                            <p>Arrangör: musikföreningen</p>
+                            <p>
+                                Detaljer: Se film hela kvällen!
+                            </p>
+                        </div>
+
+                        <div class="event-footer"><a href="#booking">Anmälan</a></div>
+                    </details>
+                </article>
+
+            </div>
+        </section>
+
+        <section id="About">
+            <h2>Om oss</h2>
+            <p>
+                EventFlow hjälper dig att hitta evenemang
+                och träffa andra.
+            </p>
+        </section>
+
+        <section id="booking">
+            <h2>Anmäl dig</h2>
+            <div id="feedback" aria-live="polite"></div>
+            <form>
+                <fieldset>
+                    <legend>Anmälningsformulär</legend>
+
+                    <div class="form-group">
+                        <label for="name">Namn:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-post:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectEvent">
+                            Välj evenemang:
+                        </label>
+
+                        <select id="selectEvent" name="selectEvent" required >
+                            <option value="">Välj ett evenemang</option>
+                            <option value="code-night">Code night</option>
+                            <option value="game-night">Game night</option>
+                            <option value="movie-night">Movie night</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn">
+                        Skicka
+                    </button>
+                </fieldset>
+            </form>
+        </section>
+
+        <section id="contact">
+            <h2>Kontakta oss</h2>
+            <p>Kontakta EventFlow för mer information.</p>
+        </section>
+    </main>
+
+    <footer class="footer-content">
+        <p>&copy; 2026 EventFlow. All rights reserved.</p>
+    </footer>
+</body>
+</html>
