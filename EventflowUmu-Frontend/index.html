@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>EventFlow</title>
-
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -20,6 +18,7 @@
                 <li><a href="#Event">Evenemang</a></li>
                 <li><a href="#About">Om oss</a></li>
                 <li><a href="#contact">Kontakt</a></li>
+                <li><a href="create-event.html">Create Event</a></li>
             </ul>
         </nav>
     </header>
@@ -35,6 +34,7 @@
 
                 
             </div>
+        
         </section>
 
         <section id="About">
@@ -59,24 +59,18 @@
 
                     <div class="form-group">
                         <label for="email">E-post:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                        >
+                        <input type="email" id="email" name="email" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="selectEvent">
-                            Välj evenemang:
-                        </label>
+                        <label for="phone">Telefon nr:</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="selectEvent">Välj evenemang:</label>
                         <select id="selectEvent" name="selectEvent" required >
                             <option value="">Välj ett evenemang</option>
-                            <option value="code-night">Code night</option>
-                            <option value="game-night">Game night</option>
-                            <option value="movie-night">Movie night</option>
                         </select>
                     </div>
 

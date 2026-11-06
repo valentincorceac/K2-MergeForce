@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Event Flow Create Event</title>
+    <script src="create-event.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Create Event</h1>
+        <p>Create an event for people to find</p>
+
+        <nav aria-label="Huvudmeny">
+            <ul>
+                <li><a href="#event-form">Formulär</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="index.html">Go Back</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="event-form">
+            <h2>Create Event</h2>
+            <div id="feedback" aria-live="polite"></div>
+
+            <form id="createEventForm">
+                <fieldset>
+                    <legend>Create an event</legend>
+                    <div class="form-group">
+                        <label for="title">Event Title:</label>
+                        <input type="text" id="title" name="title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description: </label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Event Date:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Event Time:</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Bild-URL:</label>
+                        <input type="url" id="image" name="image">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select-category">Choose Category</label>
+                        <select id="select-category" name="select-category" required>
+                            <option value="">Välj kategori</option>
+                            <option value="teknik">Teknik</option>
+                            <option value="musik">Musik</option>
+                            <option value="kultur">Kultur</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select-venue">Choose Venue:</label>
+                        <select id="select-venue" name="venue" required>
+                            <option value="">Välj en Plats</option>
+                            <option value="student-huset">Student huset</option>
+                            <option value="Kulturhuset">Kulturhuset</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select-organizer">Organizer Name:</label>
+                        <select id="select-organizer" name="organizer">
+                            <option value="">Välj arrangör</option>
+                            <option value="Studentförening">Studentförening</option>
+                            <option value="Musikklubb">Musikklubb</option>
+                        </select>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <section>
+            <button id="removeBtn">Remove all events</button>
+        </section>
+
+        <section id="contact">
+            <h2>Kontakta oss</h2>
+            <p>Kontakta EventFlow för mer information.</p>
+        </section>
+    </main>
+    <footer class="footer-content">
+        <p>&copy; 2026 EventFlow. All rights reserved.</p>
+    </footer>
+</body>
+</html>
