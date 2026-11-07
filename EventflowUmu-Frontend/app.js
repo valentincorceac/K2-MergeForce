@@ -14,6 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
+     //filtrear dina sökningar, hämtar elementid ifrån "val"
+  const val = document.getElementById("val");
+  const artiklar = document.querySelectorAll("main article");
+
+  if (val) {
+  val.addEventListener("change", function () {
+    artiklar.forEach(function (a) {
+      a.hidden = val.value !== "event" && a.id !== val.value;
+        });
+  });
+}
+
+
     // Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
     bookingForm.noValidate = true;
 
@@ -71,8 +84,8 @@ document.addEventListener("DOMContentLoaded", () => {
             showFieldError(selectEvent, "Välj ett evenemang.");
             return;
         }
-
-        const eventName =
+            
+            const eventName =
             selectEvent.options[selectEvent.selectedIndex].text;
 
         // Mahmoud: Förtydligar att bekräftelsen inte innebär en sparad anmälan. textContent visar inmatning som text.
@@ -83,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         feedback.classList.add("success");
         bookingForm.reset();
+
     });
 });
 
