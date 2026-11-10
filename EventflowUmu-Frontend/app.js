@@ -13,7 +13,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!nameInput || !emailInput || !selectEvent) {
         return;
     }
+        //filtrear dina sökningar, hämtar elementid ifrån "val"
+ const val = document.getElementById("val");
+ const artiklar = document.querySelectorAll("main article");
 
+ if (val) {
+ val.addEventListener("change", function () {
+   artiklar.forEach(function (a) {
+     a.hidden = val.value !== "event" && a.id !== val.value;
+   });
+});
+ }
     // Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
     bookingForm.noValidate = true;
 

@@ -13,8 +13,6 @@
 <body>
     <header class="site-header">
         <h1>EventFlow</h1>
-        <p>Hitta ditt nästa evenemang.</p>
-
         <nav aria-label="Huvudmeny">
             <ul>
                 <li><a href="#Event">Evenemang</a></li>
@@ -29,7 +27,16 @@
     </header>
 
     <main>
-        <section>filtrering för användare</section>
+        <fieldset>
+            <legend>Filtrera dina sökningar</legend>
+                <label for="val"><strong>Välj kategori:</strong></label>
+                <select id="val">
+                    <option value="event">event</option>
+                    <option value="codenight">Code night</option>
+                    <option value="gamenight">game night</option>
+                    <option value="movienight">movie night</option>
+                </select>
+        </fieldset>
 
     
         
@@ -39,12 +46,12 @@
             <!-- Samlar alla evenemangskort i samma behållare. -->
             <div class="event-list">
 
-                <article class="eventlist">
+                <article class="eventlist" id="codenight">
                     <h3>Code night</h3>
                     <p>En kväll med programmering och samarbete.</p>
 
                     <!-- Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel. -->
-                    <img src="picturesadd/event1.png" alt="Bild för Code night">
+                    <img src="picturesadd/event1.jpg" alt="Bild för Code night">
 
                     <details>
                         <summary>Evenemang Detaljer</summary>
@@ -65,13 +72,13 @@
                     </details>
                 </article>
 
-                <article class="eventlist">
+                <article class="eventlist" id="gamenight">
                     <h3>Game night</h3>
                     <p>Träffa andra och spela tillsammans.</p>
 
                     <!-- Mahmoud: Anpassar sökvägen till PNG-bilden för Game night. -->
                     <img
-                        src="picturesadd/event2.png"
+                        src="picturesadd/event2.jpg"
                         alt="Bild för Game night"
                     >
 
@@ -94,12 +101,12 @@
                     </details>
                 </article>
 
-                <article class="eventlist">
+                <article class="eventlist" id="movienight">
                     <h3>Movie night</h3>
                     <p>Se en film tillsammans med andra.</p>
 
                     <!-- Mahmoud: Anpassar bildsökvägen till PNG-bilden för Movie night. -->
-                    <img src="picturesadd/event3.png" alt="Bild för Movie night">
+                    <img src="picturesadd/event3.jpg" alt="Bild för Movie night">
                     <details>
                         <summary>Evenemang Detaljer</summary>
 
