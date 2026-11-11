@@ -112,7 +112,7 @@ Ja, inför frontend.
 ## Daily Scrum 2026/11/04
 
 ### Framsteg mot sprintmålet    
-Vi har bockat av förra veckans sprint goals. 
+Vi har jobbat med frontend, testat normalfall
 
 ### Pågående arbete
 Vi har en user story som pågående - Skapa en filtrering och sökruta för evenemang. 
@@ -127,5 +127,33 @@ Nej, inget i dagsläget.
 ### Anpassning av planen
 Förbättra sidans användarvänlighet. 
 Tagit bort besökarens inloggning från "Anmäla sig till ett evenemang". 
+
+---
+
+## Daily Scrum 2026/11/11 SM: Bilian, PO: Victor
+
+### Framsteg mot sprintmålet    
+Vi har jobbat med frontend, testat normalfall.
+
+### Vad behöver avslutas idag?
+Updatera ground rules, utveckla kanban tavlan. 
+
+### hinder och risker
+Kunskapsluckor, koppling mellan api:n och projektet. 
+
+### Behov av hjälp eller review
+Vi behöver updatera kanban.
+
+### Anpassning av planen
+ Eventuellt ser över bilderna, om vi kan fetcha bilder från API:n. 
+
+
+1. Vad är Done sedan senaste avstämningen?
+2. Vad ska teamet avsluta idag?
+3. Finns hinder kring API, JSON eller datagränser?
+4. Vem behöver hjälp eller review?
+5. Behöver API-storyn, planen eller prioriteringen ändras?
+
+---
 
 
