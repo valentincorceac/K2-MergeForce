@@ -1,4 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    //search bar
+    const searchForm = document.querySelector("#search-form");
+    const searchBar = document.querySelector("#search-bar");
+    const eventList = document.querySelectorAll(".eventlist");
+    const searchFeedback = document.querySelector("#search-feedback");
+    const searchFeedbackField = document.querySelector(".search-feedback-field");
+    
+
+    searchForm.addEventListener("input", event => {
+        event.preventDefault();
+
+        let eventMatch = false;
+
+        const searchValue = searchBar.value.toLowerCase().trim();
+        
+
+        eventList.forEach(card => {
+            const eventTitle =  card.querySelector("h3").textContent.toLowerCase();
+            if (eventTitle.startsWith(searchValue)){
+            card.style.display = "";
+            searchFeedbackField.classList.remove("error");
+            searchFeedback.textContent = "";
+            eventMatch = true;
+        } 
+        else {
+            card.style.display = "none";
+        }
+        
+        if (eventMatch) {
+        searchFeedbackField.classList.remove("error");
+        searchFeedback.textContent = "";
+        } else {
+            searchFeedbackField.classList.add("error");
+            searchFeedback.textContent = "Inga evenemang matchar din sökning.";
+        }
+
+        });
+
+    });
+
     const bookingForm = document.querySelector("#booking form");
     const feedback = document.getElementById("feedback");
 

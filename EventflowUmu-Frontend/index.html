@@ -26,23 +26,32 @@
         </nav>
     </header>
 
-    <main>
-        <fieldset>
+    <main>     
+        <fieldset class="filter-fieldset">
             <legend>Filtrera dina sökningar</legend>
                 <label for="val"><strong>Välj kategori:</strong></label>
                 <select id="val">
-                    <option value="event">event</option>
+                    <option value="event">All</option>>
                     <option value="codenight">Code night</option>
-                    <option value="gamenight">game night</option>
-                    <option value="movienight">movie night</option>
+                    <option value="gamenight">Game night</option>
+                    <option value="movienight">Movie night</option>
                 </select>
+                
+                <form id="search-form">
+                    <search>
+                        <input type="search" id="search-bar" class="search-bar" placeholder="Sök efter evenemang">
+                    </search>
+                </form>
         </fieldset>
 
     
         
         <section id="Event">
             <h2>Evenemang</h2>
-
+            <div class="search-feedback-field" id="create-event-feedback">
+                <p id="search-feedback" role="status"></p>
+            </div>
+            
             <!-- Samlar alla evenemangskort i samma behållare. -->
             <div class="event-list">
 
