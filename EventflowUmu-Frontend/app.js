@@ -54,6 +54,8 @@ async function loadExempelEvents(){
 
 
 
+
+
 searchForm.addEventListener("input", event => {
     event.preventDefault();
 
@@ -86,8 +88,10 @@ searchForm.addEventListener("input", event => {
 
 });
 
+
 const bookingForm = document.querySelector("#booking form");
 const feedback = document.getElementById("feedback");
+const selectEvent = document.querySelector("#selectEvent");
 
 //if (!bookingForm || !feedback) {
 //    return;
@@ -95,7 +99,32 @@ const feedback = document.getElementById("feedback");
 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
-const selectEvent = document.getElementById("selectEvent");
+
+
+const eventData = [
+    {id: "code-night", max: 50, booked: 50 }, 
+    {id: "game-night", max: 50, booked: 27 },
+    {id: "movie-night", max: 100, booked: 48 }
+];
+
+function updateEventAvailability() {
+    Array.from(selectEvent.options).forEach(option =>  {
+        const val = option.value
+        const eventItem = eventData.find(e => e.id === val);
+
+        if (eventItem) {
+            const remaining = eventItem.max - eventItem.booked;
+            let cleantext = option.text.split(" (")[0];
+
+            if (remaining <= 0) {
+                option.text = `${cleantext} - FULLBOKAT`;
+                option.disabled = true;
+            } else {
+                option.text = `${cleantext} (${remaining} platser kvar)`;
+            }
+        }
+    });
+}
 
 //if (!nameInput || !emailInput || !selectEvent) {
 //    return;
@@ -111,8 +140,13 @@ artiklar.forEach(function (a) {
 });
 });
 }
+
+updateEventAvailability();
 // Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
-bookingForm.noValidate = true;
+    if (bookingForm && feedback){
+        bookingForm.noValidate = true;
+    }
+        
 
 // Mahmoud: Samlar felhanteringen i en funktion. aria-invalid markerar felet, aria-describedby kopplar meddelandet och focus hjälper användaren att rätta.
 function showFieldError(field, message) {
@@ -168,6 +202,12 @@ bookingForm.addEventListener("submit", (event) => {
         showFieldError(selectEvent, "Välj ett evenemang.");
         return;
     }
+    // --- NY KONTROLL: Kolla om evenemanget är fullbokat ---
+            const selectedEventData = eventData.find(e => e.id === eventValue);
+            if (selectedEventData && selectedEventData.booked >= selectedEventData.max) {
+                showFieldError(selectEvent, "FULLBOKAT: Det går inte att anmäla sig till detta evenemang.");
+                return;
+    }
 
     const eventName =
         selectEvent.options[selectEvent.selectedIndex].text;
@@ -180,6 +220,7 @@ bookingForm.addEventListener("submit", (event) => {
 
     feedback.classList.add("success");
     bookingForm.reset();
+    updateEventAvailability();
 });
 //});
 
