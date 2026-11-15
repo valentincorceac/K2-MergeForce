@@ -6,6 +6,52 @@ const searchBar = document.querySelector("#search-bar");
 const eventList = document.querySelectorAll(".eventlist");
 const searchFeedback = document.querySelector("#search-feedback");
 const searchFeedbackField = document.querySelector(".search-feedback-field");
+const apiStatus = document.getElementById("apiStatus");
+const loadBTN = document.getElementById("loadBTN");
+const apiURL = "http://localhost:5043/api/events";
+
+loadBTN.addEventListener("click", loadExempelEvents);
+
+async function loadExempelEvents(){
+    apiStatus.textContent = "Hämntar events...";
+
+    //replaceChildren
+
+    loadBTN.disabled = true;
+
+    let userMessage = "Evenemang kunde inte hämntas. Försök igen.";
+
+    try{
+        const response = await fetch(apiURL);
+
+        if(!response.ok){
+            if(response.status === 404){
+                userMessage = "Evenemang kunde inte hittas.";
+            }else if(response.status >= 500 && response.status <= 599){
+                userMessage = "Tjänsten har problem. Försök igen senare";
+            }
+            throw new Error(`Http-fel: ${response.status}`);
+        }
+
+        const events = await response.json();
+        
+        if(events.length === 0){
+            apiStatus.textContent = "Det finns inga events att visa";
+            return;
+        }
+
+        console.log(events);
+
+        apiStatus.textContent = `${events.length} events hämntades`;
+
+    }catch(error){
+        console.error("Kunde inte hämnta exempelevents. Se network för mer information");
+        apiStatus.textContent = userMessage;
+    }finally{
+        loadBTN.disabled = false;
+    }
+}
+
 
 
 searchForm.addEventListener("input", event => {
