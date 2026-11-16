@@ -4,6 +4,17 @@
 const searchForm = document.querySelector("#search-form");
 const searchBar = document.querySelector("#search-bar");
 const eventList = document.querySelectorAll(".eventlist");
+// Hämta aktuell tid från besökarens enhet.
+const now = Date.now();
+
+// Dölj evenemang som redan har börjat.
+eventList.forEach(card => {
+    const startTime = Date.parse(card.dataset.start);
+
+    if (!Number.isFinite(startTime) || startTime <= now) {
+        card.remove();
+    }
+});
 const searchFeedback = document.querySelector("#search-feedback");
 const searchFeedbackField = document.querySelector(".search-feedback-field");
 const apiStatus = document.getElementById("apiStatus");
