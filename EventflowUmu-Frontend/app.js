@@ -20,13 +20,14 @@ const searchFeedbackField = document.querySelector(".search-feedback-field");
 const apiStatus = document.getElementById("apiStatus");
 const loadBTN = document.getElementById("loadBTN");
 const apiURL = "http://localhost:5043/api/events";
+const apiEventList = document.getElementById("apiEventLoader");
 
 loadBTN.addEventListener("click", loadExempelEvents);
 
 async function loadExempelEvents(){
     apiStatus.textContent = "Hämntar events...";
 
-    //replaceChildren
+    apiEventList.replaceChildren();
 
     loadBTN.disabled = true;
 
@@ -52,6 +53,35 @@ async function loadExempelEvents(){
         }
 
         console.log(events);
+        for (const event of events) {
+            //filtrera evenemang här!
+            const eventCard = document.createElement("article");
+            eventCard.className = `eventlist`;
+            eventCard.id = `${event.id}`;
+            const startsAt = new Date(event.startsAt);
+            const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
+            const eventdate = startsAt.toLocaleDateString("sv-SE");
+
+            const title = document.createElement("h3");
+            title.textContent = `${event.title}`;
+            const venue = document.createElement("p");
+            venue.textContent = `${event.venue}`;
+            const organizer = document.createElement("p");
+            organizer.textContent = `${event.organizer}`;
+            const time = document.createElement("p");
+            time.textContent = `${eventTime}`;
+            const date = document.createElement("p");
+            date.textContent = `${eventdate}`;
+            const category = document.createElement("p");
+            category.textContent = `${event.category}`;
+            const description = document.createElement("p");
+            description.textContent = `${event.description}`;
+            
+
+            eventCard.append(title, venue, organizer, time, date, category, description);
+            apiEventList.append(eventCard);
+
+        }
 
         apiStatus.textContent = `${events.length} events hämntades`;
 
