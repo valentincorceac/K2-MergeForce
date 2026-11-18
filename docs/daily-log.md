@@ -155,5 +155,23 @@ Vi behöver updatera kanban.
 5. Behöver API-storyn, planen eller prioriteringen ändras?
 
 ---
+## Daily Scrum 2026/11/11 SM: Valentin, PO: P-A
 
+### Vad som är Done
+Vi har mergeat userstorys, maxgräns för besökare samt sökning/filtrering. Vi har fetchat API och renderat ut i DOM.
+
+### Framsteg mot sprintmålet
+ Hämta och visa evenemang med formaliserad PR-review, ge tydlig återkoppling vid fel och låta besökaren försöka igen med formulärinmatningen kvar.
+ 
+### Arbete som riskerar att inte bli klart
+Inget som vi kommit på just nu.
+
+### Blockerare, reviewköer och beroenden
+Finns en del på review som vi ska lösa under veckan.
+
+### Hjälp eller beslut som behövs
+Vi kolla upp sluttid för varje eventcard.
+
+### Förändring i plan eller prioritet
+Prioritera dom obligatoriska kraven i en uppdaterad kanban-tavla.
 
