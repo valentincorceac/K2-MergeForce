@@ -10,7 +10,7 @@ nav ul {
 }
 
 /* Placerar korten bredvid varandra när det finns plats. */
-.event-list {
+.event-list, #apiEventLoader {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
