@@ -31,7 +31,7 @@
             <legend>Filtrera dina sökningar</legend>
                 <label for="val"><strong>Välj kategori:</strong></label>
                 <select id="val">
-                    <option value="event">All</option>>
+                    <option value="event">All</option>
                     <option value="codenight">Code night</option>
                     <option value="gamenight">Game night</option>
                     <option value="movienight">Movie night</option>
@@ -49,7 +49,7 @@
         <section id="Event">
             <h2>Evenemang</h2>
             <p id="apiStatus"></p>
-                <button type="button" id="loadBTN">Load Events</button>
+                <button type="button" id="loadBTN">Hämta evenemang</button>
 
             <div id="apiEventLoader"></div>
 
@@ -64,7 +64,7 @@
                 <article 
                     class="eventlist" 
                     id="codenight"
-                    data-start="2026-11-23T18:00:00+01:00"
+                    data-start="2026-12-23T18:00:00+01:00"
                     >
                     <h3>Code night</h3>
                     <p>En kväll med programmering och samarbete.</p>
@@ -78,14 +78,12 @@
                         <summary>Evenemang Detaljer</summary>
 
                         <div class="event-details">
-                            <p>Date: 2026-11-23</p>
-                            <p>Time: 18:00 - 22:00</p>
-                            <p>Location: Tech Hub, Main Street</p>
-                            <p>Arrangör: Code clubAB</p>
+                            <p>Datum: 2026-12-23</p>
+                            <p>Tid: 18:00 - 22:00</p>
+                            <p>Plats: Tech Hub, Umeå Universitet</p>
+                            <p>Arrangör: Kodklubben AB</p>
                             <p>
-                                Description: Join us for an exciting night
-                                of coding, collaboration, and learning.
-                                Bring your laptop and your ideas!
+                                Detaljer: kom och programmera med andra likasinnande!
                             </p>
                         </div>
 
@@ -111,10 +109,10 @@
                         <summary>Evenemang Detaljer</summary>
 
                         <div class="event-details">
-                            <p>Datum: 2026-11-24</p>
+                            <p>Datum: 2026-12-23</p>
                             <p>Tid: 18:00 - 22:00</p>
-                            <p>Plats: Tech Hub, Main Street</p>
-                            <p>Arrangör: Game clubAB</p>
+                            <p>Plats: Spelbolaget, Umestan B-huset </p>
+                            <p>Arrangör: Spelbolaget AB</p>
                             <p>
                                 Detaljer: Spela hela natten!
                             </p>
@@ -140,10 +138,10 @@
                         <summary>Evenemang Detaljer</summary>
 
                         <div class="event-details">
-                            <p>Datum: 2026-11-25</p>
+                            <p>Datum: 2026-12-25</p>
                             <p>Tid: 18:00 - 22:00</p>
-                            <p>Plats: Tech Hub, Main Street</p>
-                            <p>Arrangör: musikföreningen</p>
+                            <p>Plats: SF-bio, Vasagatan 12</p>
+                            <p>Arrangör: Filmsällskapet</p>
                             <p>
                                 Detaljer: Se film hela kvällen!
                             </p>
@@ -173,7 +171,7 @@
 
                     <div class="form-group">
                         <label for="name">Namn:</label>
-                        <input type="text" id="name" name="name" placeholder="Lennart Karlsson" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
 
                     <div class="form-group">
@@ -182,14 +180,13 @@
                             type="email"
                             id="email"
                             name="email"
-                            placeholder="lennart@gmail.se"
-                            required
-                        >
+                            required>
+                        
                     </div>
 
                     <div class ="form-group">
-                        <label for="phonenumber">Telefonnummer:</label>
-                        <input type="phonenumber" id="phonenumber" name="phonenumber" placeholder="+46 07 123 45 67" pattern="[+0-9\s\-]{7,5}" required>
+                        <label for="phone">Telefonnummer:</label>
+                        <input type="tel" id="phone" name="phone" pattern="[0-9]{7,15}" required>
                     </div>
 
                     <div class="form-group">
