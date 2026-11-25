@@ -175,3 +175,25 @@ Vi kollar upp sluttid för varje eventcard.
 ### Förändring i plan eller prioritet
 Prioritera dom obligatoriska kraven i en uppdaterad kanban-tavla.
 
+
+## Daily Scrum – 2026/11/25
+P-O: Valetin
+SM: Manne
+
+## Vad är Done och verifierat?
+Vi körde en testgenomgång av web applikationen och checkade av mot obligatoriska kraven för att se vilka delar som fattades. 
+Många av dem obligatoriska kraven är redan uppfyllda. 
+
+## Vad måste avslutas idag för att leveransen ska bli klar?
+Filtrering- och sökrutan ska fungera mot API:t. 
+Styling för att göra applikationen mer inbjudande. (veckans uppdrag)
+detaljvyn för evenemangen hämtade med API:n. 
+
+## Finns blockerare, öppna reviews eller testfel?
+Öppna reviews som behöver ses över. 
+
+## Vem behöver hjälp?
+P-A med filtrering. 
+
+## Vad ska flyttas till backlogg i stället för att startas nu?
+Inget just nu. 
