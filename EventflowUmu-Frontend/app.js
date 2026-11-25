@@ -1,60 +1,125 @@
 //document.addEventListener("DOMContentLoaded", () => {
 
 //search bar
-const searchForm = document.querySelector("#search-form");
-const searchBar = document.querySelector("#search-bar");
+//const searchForm = document.querySelector("#search-form");
+//const searchBar = document.querySelector("#search-bar");
 const eventList = document.querySelectorAll(".eventlist");
 // Hämta aktuell tid från besökarens enhet.
 const now = Date.now();
 
 // Dölj evenemang som redan har börjat.
-eventList.forEach(card => {
+/*eventList.forEachr(card => {
     const startTime = Date.parse(card.dataset.start);
 
     if (!Number.isFinite(startTime) || startTime <= now) {
         card.remove();
     }
-});
-const searchFeedback = document.querySelector("#search-feedback");
-const searchFeedbackField = document.querySelector(".search-feedback-field");
+});*/
+//const searchFeedback = document.querySelector("#search-feedback");
+//const searchFeedbackField = document.querySelector(".search-feedback-field");
 const apiStatus = document.getElementById("apiStatus");
+const apiStatusfilter = document.getElementById("api-status");
+const apiSearch = document.querySelector("#api-event-search");
 const loadBTN = document.getElementById("loadBTN");
 const apiURL = "http://localhost:5043/api/events";
 const apiEventList = document.getElementById("apiEventLoader");
+const apifilter = document.getElementById("api-load-filter");
+//const articles = document.querySelectorAll("main article");
 
-loadBTN.addEventListener("click", loadExempelEvents);
 
-async function loadExempelEvents(){
-    apiStatus.textContent = "Hämntar events...";
+//En tom array[] som sedan hämtar data/lista för att fylla den.
+let apifilterEvent = [];
+//visar om en hämtning har lyckas.
+let apiLoaded = false;
 
+loadExampleEvents();
+
+
+function showFilterCategory() {
+    const selectedCategory = apifilter.value;
+    const searchText = apiSearch.value.trim().toLowerCase();
+    const matches = apifilterEvent.filter(event => {
+        const matchesFilter = selectedCategory === "" || event.category === selectedCategory;
+        const matchesSearch = event.title.toLowerCase().startsWith(searchText);
+        return matchesFilter && matchesSearch;
+    });
+    //Tar bort gamla listor så dom inte dubbleras.
     apiEventList.replaceChildren();
 
+    for (const event of matches) {
+                    const eventCard = document.createElement("article");
+            eventCard.className = `eventlist`;
+            eventCard.id = `${event.id}`;
+            const startsAt = new Date(event.startsAt);
+            const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
+            const eventdate = startsAt.toLocaleDateString("sv-SE");
+
+            const title = document.createElement("h3");
+            title.textContent = `${event.title}`;
+            const venue = document.createElement("p");
+            venue.textContent = `${event.venue}`;
+            const organizer = document.createElement("p");
+            organizer.textContent = `${event.organizer}`;
+            const time = document.createElement("p");
+            time.textContent = `${eventTime}`;
+            const date = document.createElement("p");
+            date.textContent = `${eventdate}`;
+            const category = document.createElement("p");
+            category.textContent = `${event.category}`;
+            const description = document.createElement("p");
+            description.textContent = `${event.description}`;
+        
+            
+
+            eventCard.append(title, venue, organizer, time, date, category, description);
+            apiEventLoader.append(eventCard);
+    }
+
+    if (matches.length === 0) {
+        apiStatus.textContent = "Inga evenemang stämmer med dina val";
+    }else {
+        apiStatus.textContent = `${matches.length} Evenemang visas.`;
+    }
+}
+
+async function loadExampleEvents() {
+    apiLoaded = false;
+    apifilterEvent = [];
+    apiStatus.textContent = "Hämtar event...";
+    apifilter.replaceChildren(new Option("Alla event", ""));
     loadBTN.disabled = true;
 
-    let userMessage = "Evenemang kunde inte hämntas. Försök igen.";
+    let userMessage = "eventen kunde inte hämtas";
 
-    try{
+    try {
         const response = await fetch(apiURL);
 
-        if(!response.ok){
-            if(response.status === 404){
-                userMessage = "Evenemang kunde inte hittas.";
-            }else if(response.status >= 500 && response.status <= 599){
-                userMessage = "Tjänsten har problem. Försök igen senare";
+        if (!response.ok) {
+            if (response.status === 404) {
+                userMessage = "Eventen kunde inte hittas";
+            }else if (response.status >= 500 && response.status <= 599) {
+                userMessage = "Tjänsten har problem.försök igen senare";
             }
-            throw new Error(`Http-fel: ${response.status}`);
+            throw new Error(`HTTP-fel: ${response.status}`);
         }
 
         const events = await response.json();
-        
-        if(events.length === 0){
-            apiStatus.textContent = "Det finns inga events att visa";
-            return;
+        apifilterEvent = events;
+        apiLoaded = true;
+        //new Set sparar bara unika värden, [..] gör om Set:en till en vanlig array.
+        const categories = [...new Set(apifilterEvent.map(event => event.category))];
+
+        for (const category of categories) {
+            apifilter.append(new Option(category, category));
         }
 
-        console.log(events);
+        if (apifilterEvent.length === 0) {
+            apiStatus.textContent = "Det finns inga event att visa.";
+            return;
+        }
+        
+        
         for (const event of events) {
-            //filtrera evenemang här!
             const eventCard = document.createElement("article");
             eventCard.className = `eventlist`;
             eventCard.id = `${event.id}`;
@@ -76,6 +141,102 @@ async function loadExempelEvents(){
             category.textContent = `${event.category}`;
             const description = document.createElement("p");
             description.textContent = `${event.description}`;
+        
+            
+
+            eventCard.append(title, venue, organizer, time, date, category, description);
+            apiEventLoader.append(eventCard);
+
+        }
+        
+
+
+
+        showFilterCategory();
+    } catch (error) {
+        console.error("Kunde inte hämta event.se network för mer information.");
+        apiStatus.textContent = userMessage;
+    }finally {
+        loadBTN.disabled = false;
+    }
+}
+
+loadBTN.addEventListener("click", loadExampleEvents);
+
+apifilter.addEventListener("change", () => {
+    if (apiLoaded) showFilterCategory();
+});
+/* filtrerar på id på hårdkodade artiklarna i HTML.
+apifilter.addEventListener("change", function () {
+            articles.forEach(function (a) {
+            a.hidden = val.value !== "event" && a.id !== val.value;
+            });
+        });
+*/
+apiSearch.addEventListener("input", () => {
+    if (apiLoaded) showFilterCategory();
+});
+
+/*
+async function loadExempelEvents(){
+    apiLoaded = false;
+    apifilterEvent = [];
+    apiStatus.textContent = "Hämntar events...";
+
+    apiEventList.replaceChildren();
+    
+    loadBTN.disabled = true;
+
+    let userMessage = "Evenemang kunde inte hämntas. Försök igen.";
+
+    try{
+        const response = await fetch(apiURL);
+
+        if(!response.ok){
+            if(response.status === 404){
+                userMessage = "Evenemang kunde inte hittas.";
+            }else if(response.status >= 500 && response.status <= 599){
+                userMessage = "Tjänsten har problem. Försök igen senare";
+            }
+            throw new Error(`Http-fel: ${response.status}`);
+        }
+
+        const events = await response.json();
+        apifilterEvent = events;
+
+        apiLoaded = true;
+        
+        if(events.length === 0){
+            apiStatus.textContent = "Det finns inga events att visa";
+            return;
+        }
+
+
+
+        console.log(events);
+        for (const event of events) {
+            const eventCard = document.createElement("article");
+            eventCard.className = `eventlist`;
+            eventCard.id = `${event.id}`;
+            const startsAt = new Date(event.startsAt);
+            const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
+            const eventdate = startsAt.toLocaleDateString("sv-SE");
+
+            const title = document.createElement("h3");
+            title.textContent = `${event.title}`;
+            const venue = document.createElement("p");
+            venue.textContent = `${event.venue}`;
+            const organizer = document.createElement("p");
+            organizer.textContent = `${event.organizer}`;
+            const time = document.createElement("p");
+            time.textContent = `${eventTime}`;
+            const date = document.createElement("p");
+            date.textContent = `${eventdate}`;
+            const category = document.createElement("p");
+            category.textContent = `${event.category}`;
+            const description = document.createElement("p");
+            description.textContent = `${event.description}`;
+        
             
 
             eventCard.append(title, venue, organizer, time, date, category, description);
@@ -92,12 +253,20 @@ async function loadExempelEvents(){
         loadBTN.disabled = false;
     }
 }
+loadBTN.addEventListener("click", loadExempelEvents);
+
+apifilter.addEventListener("change", () => {
+    if (apiLoaded) showFilterCategory();
+});
+
+apiSearch.addEventListener("input", () => {
+    if (apiLoaded) showFilterCategory();
+});
 
 
 
 
-
-searchForm.addEventListener("input", event => {
+/*searchForm.addEventListener("input", event => {
     event.preventDefault();
 
     let eventMatch = false;
@@ -127,7 +296,7 @@ searchForm.addEventListener("input", event => {
 
     });
 
-});
+});*/
 
 
 const bookingForm = document.querySelector("#booking form");
@@ -170,17 +339,8 @@ function updateEventAvailability() {
 //if (!nameInput || !emailInput || !selectEvent) {
 //    return;
 //}
-    //filtrear dina sökningar, hämtar elementid ifrån "val"
-const val = document.getElementById("val");
-const artiklar = document.querySelectorAll("main article");
 
-if (val) {
-val.addEventListener("change", function () {
-artiklar.forEach(function (a) {
-    a.hidden = val.value !== "event" && a.id !== val.value;
-});
-});
-}
+
 
 updateEventAvailability();
 // Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
