@@ -29,19 +29,29 @@
     <main>     
         <fieldset class="filter-fieldset">
             <legend>Filtrera dina sökningar</legend>
-                <label for="val"><strong>Välj kategori:</strong></label>
-                <select id="val">
-                    <option value="event">All</option>>
+                <label for="api-load-filter"><strong>Välj kategori:</strong></label>
+                <select id="api-load-filter">
+                    <option value="">Alla</option>
+
+                    <!--Filtrering på hårdkodade.
+                    <option value="event">All</option>
                     <option value="codenight">Code night</option>
                     <option value="gamenight">Game night</option>
-                    <option value="movienight">Movie night</option>
+                    <option value="movienight">Movie night</option> -->               
                 </select>
+                <label for="api-event-search"><strong>Sök Evenemang:</strong></label>
+                <input type="search" id="api-event-search" placeholder="Sök efter evenemang">
+                <p id="api-status" role="status"></p>
+                <ul id="api-event-list"></ul>
+
+
                 
-                <form id="search-form">
+                 
+                <!--<form id="search-form">
                     <search>
                         <input type="search" id="search-bar" class="search-bar" placeholder="Sök efter evenemang">
                     </search>
-                </form>
+                </form>-->
         </fieldset>
 
     
@@ -58,7 +68,7 @@
                 <p id="search-feedback" role="status"></p>
             </div>
             
-            <!-- Samlar alla evenemangskort i samma behållare. -->
+            <!-- Samlar alla evenemangskort i samma behållare.
             <div class="event-list">
 
                 <article 
@@ -69,7 +79,7 @@
                     <h3>Code night</h3>
                     <p>En kväll med programmering och samarbete.</p>
 
-                    <!-- Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel. -->
+                    // Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel.
                     <img 
                         src="picturesadd/event1.jpg" 
                         alt="Bild för Code night">
@@ -101,7 +111,7 @@
                     <h3>Game night</h3>
                     <p>Träffa andra och spela tillsammans.</p>
 
-                    <!-- Mahmoud: Anpassar sökvägen till PNG-bilden för Game night. -->
+                    //Mahmoud: Anpassar sökvägen till PNG-bilden för Game night.
                     <img
                         src="picturesadd/event2.jpg"
                         alt="Bild för Game night"
@@ -126,7 +136,7 @@
                     </details>
                 </article>
 
-                <article 
+                 <article 
                     class="eventlist" 
                     id="movienight"
                     data-start="2026-11-25T18:00:00+01:00"
@@ -134,7 +144,7 @@
                     <h3>Movie night</h3>
                     <p>Se en film tillsammans med andra.</p>
 
-                    <!-- Mahmoud: Anpassar bildsökvägen till PNG-bilden för Movie night. -->
+                     //Mahmoud: Anpassar bildsökvägen till PNG-bilden för Movie night.
                     <img src="picturesadd/event3.jpg" alt="Bild för Movie night">
                     <details>
                         <summary>Evenemang Detaljer</summary>
@@ -154,7 +164,7 @@
                 </article>
 
             </div>
-        </section>
+        </section> -->
 
         <section id="About">
             <h2>Om oss</h2>
