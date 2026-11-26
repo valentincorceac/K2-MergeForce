@@ -1,11 +1,13 @@
 //document.addEventListener("DOMContentLoaded", () => {
-
+const dialog    = document.querySelector("#eventDialog");
+const content   = document.querySelector("#dialogContent");
 //search bar
 //const searchForm = document.querySelector("#search-form");
 //const searchBar = document.querySelector("#search-bar");
 const eventList = document.querySelectorAll(".eventlist");
 // Hämta aktuell tid från besökarens enhet.
 const now = Date.now();
+
 
 // Dölj evenemang som redan har börjat.
 /*eventList.forEachr(card => {
@@ -47,31 +49,25 @@ function showFilterCategory() {
     apiEventList.replaceChildren();
 
     for (const event of matches) {
-                    const eventCard = document.createElement("article");
+        const eventCard = document.createElement("article");
             eventCard.className = `eventlist`;
             eventCard.id = `${event.id}`;
-            const startsAt = new Date(event.startsAt);
-            const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
-            const eventdate = startsAt.toLocaleDateString("sv-SE");
+            
 
             const title = document.createElement("h3");
             title.textContent = `${event.title}`;
-            const venue = document.createElement("p");
-            venue.textContent = `${event.venue}`;
-            const organizer = document.createElement("p");
-            organizer.textContent = `${event.organizer}`;
-            const time = document.createElement("p");
-            time.textContent = `${eventTime}`;
-            const date = document.createElement("p");
-            date.textContent = `${eventdate}`;
+
+            
+            
+
             const category = document.createElement("p");
             category.textContent = `${event.category}`;
-            const description = document.createElement("p");
-            description.textContent = `${event.description}`;
+            
         
             
 
-            eventCard.append(title, venue, organizer, time, date, category, description);
+            eventCard.append(title, category);
+            eventCard.addEventListener("click", () => openDialog(event));
             apiEventLoader.append(eventCard);
     }
 
@@ -123,28 +119,22 @@ async function loadExampleEvents() {
             const eventCard = document.createElement("article");
             eventCard.className = `eventlist`;
             eventCard.id = `${event.id}`;
-            const startsAt = new Date(event.startsAt);
-            const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
-            const eventdate = startsAt.toLocaleDateString("sv-SE");
+            
 
             const title = document.createElement("h3");
             title.textContent = `${event.title}`;
-            const venue = document.createElement("p");
-            venue.textContent = `${event.venue}`;
-            const organizer = document.createElement("p");
-            organizer.textContent = `${event.organizer}`;
-            const time = document.createElement("p");
-            time.textContent = `${eventTime}`;
-            const date = document.createElement("p");
-            date.textContent = `${eventdate}`;
+
+            
+            
+
             const category = document.createElement("p");
             category.textContent = `${event.category}`;
-            const description = document.createElement("p");
-            description.textContent = `${event.description}`;
+            
         
             
 
-            eventCard.append(title, venue, organizer, time, date, category, description);
+            eventCard.append(title, category);
+            eventCard.addEventListener("click", () => openDialog(event));
             apiEventLoader.append(eventCard);
 
         }
@@ -159,6 +149,42 @@ async function loadExampleEvents() {
     }finally {
         loadBTN.disabled = false;
     }
+}
+
+document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
+
+function openDialog(ev) {
+    content.replaceChildren();
+    const startsAt = new Date(ev.startsAt);
+    const eventTime = startsAt.toLocaleTimeString("sv-SE", {hour:"2-digit", minute:"2-digit"});
+    const eventdate = startsAt.toLocaleDateString("sv-SE");
+    const title = document.createElement("h3");
+    title.textContent = `${ev.title}`;
+    const description = document.createElement("p");
+    description.textContent = `${ev.description}`;
+    const venue = document.createElement("p");
+    venue.textContent = `${ev.venue}`;
+    const organizer = document.createElement("p");
+    organizer.textContent = `${ev.organizer}`;
+    const time = document.createElement("p");
+    time.textContent = `${eventTime}`;
+    const date = document.createElement("p");
+    date.textContent = `${eventdate}`;
+
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn";
+    btn.textContent ="Anmälan";
+    btn.addEventListener("click", () => {
+        dialog.close();
+        selectEvent.value = ev.id;
+        bookingForm.scrollIntoView({ behavior: "smooth", block: "start"});
+    });
+
+    content.append(title, venue, organizer, time, date, description);
+    content.appendChild(btn);
+
+    dialog.showModal();   
 }
 
 loadBTN.addEventListener("click", loadExampleEvents);

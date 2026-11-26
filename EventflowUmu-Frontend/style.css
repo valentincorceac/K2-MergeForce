@@ -53,6 +53,18 @@ summary {
     margin-bottom: 15px;
 }
 
+dialog {
+    border: none;
+    border-radius: 16px;
+    padding: 16px;
+    max-width: 50%;
+    width: 50%;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.8);
+}
+
 #feedback.error {
     color: #c62828;
     background-color: #ffebee;
