@@ -205,15 +205,13 @@ apiSearch.addEventListener("input", () => {
 
 /*
 async function loadExempelEvents(){
-    apiLoaded = false;
-    apifilterEvent = [];
-    apiStatus.textContent = "Hämntar events...";
+    apiStatus.textContent = "Hämtar evenemang...";
 
     apiEventList.replaceChildren();
     
     loadBTN.disabled = true;
 
-    let userMessage = "Evenemang kunde inte hämntas. Försök igen.";
+    let userMessage = "Evenemang kunde inte hämtas. Försök igen.";
 
     try{
         const response = await fetch(apiURL);
@@ -233,7 +231,7 @@ async function loadExempelEvents(){
         apiLoaded = true;
         
         if(events.length === 0){
-            apiStatus.textContent = "Det finns inga events att visa";
+            apiStatus.textContent = "Det finns inga evenemang att visa";
             return;
         }
 
@@ -270,7 +268,7 @@ async function loadExempelEvents(){
 
         }
 
-        apiStatus.textContent = `${events.length} events hämntades`;
+        apiStatus.textContent = `${events.length} evenemang hämtades`;
 
     }catch(error){
         console.error("Kunde inte hämnta exempelevents. Se network för mer information");
@@ -332,11 +330,12 @@ const selectEvent = document.querySelector("#selectEvent");
 //if (!bookingForm || !feedback) {
 //    return;
 //}
-
+// hämtar telefonnummer, namn och email. 
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
 
-
+// maxtak på bokning
 const eventData = [
     {id: "code-night", max: 50, booked: 50 }, 
     {id: "game-night", max: 50, booked: 27 },
@@ -385,16 +384,21 @@ function showFieldError(field, message) {
     field.setAttribute("aria-describedby", "feedback");
     field.focus();
 }
+//lyssnar efter input i telefonfältet, användaren kan bara skriva siffror
+phoneInput.addEventListener("input", () => {
+    phoneInput.value = phoneInput.value.replace(/\D/g, "");
+});
 
 bookingForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
+    const phone = phoneInput.value.trim();
     const eventValue = selectEvent.value;
 
     // Mahmoud: Rensar tidigare fel före ny validering så att rättade fält inte behåller felmarkeringen.
-    for (const field of [nameInput, emailInput, selectEvent]) {
+    for (const field of [nameInput, emailInput,phoneInput, selectEvent]) {
         field.removeAttribute("aria-invalid");
         field.removeAttribute("aria-describedby");
     }
@@ -410,6 +414,11 @@ bookingForm.addEventListener("submit", (event) => {
 
     if (email === "") {
         showFieldError(emailInput, "Ange din e-postadress.");
+        return;
+    }
+
+    if (phone === "") {
+        showFieldError(phoneInput, "Ange ditt telefonnummer.");
         return;
     }
 
