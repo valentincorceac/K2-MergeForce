@@ -4,48 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>EventFlow</title>
+    <title>EventFlow – Umeå &amp; Örnsköldsvik</title>
 
     <script src="app.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <header class="site-header">
-        <h1>EventFlow</h1>
-        <nav aria-label="Huvudmeny">
-            <ul>
-                <li><a href="#Event">Evenemang</a></li>
-                <!-- Mahmoud: Lägger till en direktlänk till besökarens anmälningsformulär utan krav på konto. -->
-                <li><a href="#booking">Anmäl dig</a></li>
-                <li><a href="#About">Om oss</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <!-- Mahmoud: Länkar till den separata arrangörsingången. Länken ger ingen autentisering. -->
-                <li><a href="login.html">Arrangör – Logga in</a></li>
-            </ul>
-        </nav>
+    <header class="site-header team-header" id="top">
+        <div class="team-top">
+            <a class="team-logo" href="#top" aria-label="EventFlow – startsida">
+                <img
+                    src="picturesadd/eventflow-logo.png"
+                    alt=""
+                    width="48"
+                    height="48"
+                >
+                <span>EventFlow<span class="team-logo-dot" aria-hidden="true">.</span></span>
+            </a>
+
+            <nav aria-label="Huvudmeny">
+                <ul>
+                    <li><a href="#Event">Evenemang</a></li>
+                    <!-- Mahmoud: Lägger till en direktlänk till besökarens anmälningsformulär utan krav på konto. -->
+                    <li><a href="#booking">Anmäl dig</a></li>
+                    <li><a href="#About">Om oss</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+                    <!-- Mahmoud: Länkar till den separata arrangörsingången. Länken ger ingen autentisering. -->
+                    <li><a href="login.html">Arrangör – Logga in</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="team-hero">
+            <div class="team-hero-copy">
+                <h1 class="hero-heading">
+                    <span class="hero-heading-prefix">Evenemang i</span>
+                    <span class="hero-city hero-city-umea">Umeå</span>
+                    <span class="hero-city-join">&amp;</span>
+                    <span class="hero-city hero-city-ovik">Örnsköldsvik</span>
+                </h1>
+
+                <p>Hitta ditt nästa evenemang. Sök på namn eller välj en kategori.</p>
+
+                <a class="team-hero-button" href="#Event">
+                    Utforska evenemang <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="city-ticket-art" aria-hidden="true">
+                <div class="city-ticket">
+                    <div class="city-ticket-top">
+                        <span>EVENTFLOW</span>
+                        <span>✦</span>
+                    </div>
+
+                    <p class="city-ticket-title">
+                        Umeå <span>&amp;</span><br>
+                        Örnsköldsvik
+                    </p>
+
+                    <div class="city-ticket-bottom">
+                        <span>Teknik · Musik · Kultur</span>
+                        <span class="city-ticket-barcode"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>     
         <fieldset class="filter-fieldset">
             <legend>Filtrera dina sökningar</legend>
-                <label for="val"><strong>Välj kategori:</strong></label>
-                <select id="val">
+                <label for="api-load-filter"><strong>Välj kategori:</strong></label>
+                <select id="api-load-filter">
+                    <option value="">Alla</option>
+
+                    <!--Filtrering på hårdkodade.
                     <option value="event">All</option>
                     <option value="codenight">Code night</option>
                     <option value="gamenight">Game night</option>
-                    <option value="movienight">Movie night</option>
+                    <option value="movienight">Movie night</option> -->               
                 </select>
-                
-                <form id="search-form">
+                <label for="api-event-search"><strong>Sök Evenemang:</strong></label>
+                <input type="search" id="api-event-search" placeholder="Sök efter evenemang">
+                <p id="api-status" role="status"></p>
+                <ul id="api-event-list"></ul>
+
+                <!--<form id="search-form">
                     <search>
                         <input type="search" id="search-bar" class="search-bar" placeholder="Sök efter evenemang">
                     </search>
-                </form>
+                </form>-->
         </fieldset>
 
-    
-        
         <section id="Event">
             <h2>Evenemang</h2>
             <p id="apiStatus"></p>
@@ -53,12 +105,11 @@
 
             <div id="apiEventLoader"></div>
 
-
             <div class="search-feedback-field" id="create-event-feedback">
                 <p id="search-feedback" role="status"></p>
             </div>
             
-            <!-- Samlar alla evenemangskort i samma behållare. -->
+            <!-- Samlar alla evenemangskort i samma behållare.
             <div class="event-list">
 
                 <article 
@@ -69,7 +120,7 @@
                     <h3>Code night</h3>
                     <p>En kväll med programmering och samarbete.</p>
 
-                    <!-- Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel. -->
+                    // Mahmoud: Anpassar bildsökvägen till den nya PNG-filen för Code night efter upptäckta 404-fel.
                     <img 
                         src="picturesadd/event1.jpg" 
                         alt="Bild för Code night">
@@ -99,7 +150,7 @@
                     <h3>Game night</h3>
                     <p>Träffa andra och spela tillsammans.</p>
 
-                    <!-- Mahmoud: Anpassar sökvägen till PNG-bilden för Game night. -->
+                    //Mahmoud: Anpassar sökvägen till PNG-bilden för Game night.
                     <img
                         src="picturesadd/event2.jpg"
                         alt="Bild för Game night"
@@ -124,7 +175,7 @@
                     </details>
                 </article>
 
-                <article 
+                 <article 
                     class="eventlist" 
                     id="movienight"
                     data-start="2026-11-25T18:00:00+01:00"
@@ -132,7 +183,7 @@
                     <h3>Movie night</h3>
                     <p>Se en film tillsammans med andra.</p>
 
-                    <!-- Mahmoud: Anpassar bildsökvägen till PNG-bilden för Movie night. -->
+                     //Mahmoud: Anpassar bildsökvägen till PNG-filen för Movie night efter upptäckta 404-fel.
                     <img src="picturesadd/event3.jpg" alt="Bild för Movie night">
                     <details>
                         <summary>Evenemang Detaljer</summary>
@@ -152,6 +203,7 @@
                 </article>
 
             </div>
+            -->
         </section>
 
         <section id="About">
@@ -214,6 +266,11 @@
             <p>Kontakta EventFlow för mer information.</p>
         </section>
     </main>
+
+    <dialog id="eventDialog">
+        <button id="closeDialog" class="button" aria-label="Stäng">✕</button>
+        <div id="dialogContent"><!--Filled by javaScript--></div>
+    </dialog>
 
     <footer class="footer-content">
         <p>&copy; 2026 EventFlow. All rights reserved.</p>
