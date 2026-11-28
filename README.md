@@ -1,3 +1,4 @@
+[English](README-en.md)
 # EventFlow – MergeForce
 
 ## Syfte och målgrupp
