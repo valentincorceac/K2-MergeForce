@@ -50,25 +50,25 @@ function showFilterCategory() {
 
     for (const event of matches) {
         const eventCard = document.createElement("article");
-            eventCard.className = `eventlist`;
-            eventCard.id = `${event.id}`;
-            
-
-            const title = document.createElement("h3");
-            title.textContent = `${event.title}`;
-
-            
-            
-
-            const category = document.createElement("p");
-            category.textContent = `${event.category}`;
-            
+        eventCard.className = `eventlist`;
+        eventCard.id = `${event.id}`;
         
-            
 
-            eventCard.append(title, category);
-            eventCard.addEventListener("click", () => openDialog(event));
-            apiEventLoader.append(eventCard);
+        const title = document.createElement("h3");
+        title.textContent = `${event.title}`;
+
+        
+        
+
+        const category = document.createElement("p");
+        category.textContent = `${event.category}`;
+        
+    
+        
+
+        eventCard.append(title, category);
+        eventCard.addEventListener("click", () => openDialog(event));
+        apiEventLoader.append(eventCard);
     }
 
     if (matches.length === 0) {
@@ -113,42 +113,31 @@ async function loadExampleEvents() {
             apiStatus.textContent = "Det finns inga event att visa.";
             return;
         }
-        
-        
-        for (const event of events) {
-            const eventCard = document.createElement("article");
-            eventCard.className = `eventlist`;
-            eventCard.id = `${event.id}`;
-            
 
-            const title = document.createElement("h3");
-            title.textContent = `${event.title}`;
-
-            
-            
-
-            const category = document.createElement("p");
-            category.textContent = `${event.category}`;
-            
-        
-            
-
-            eventCard.append(title, category);
-            eventCard.addEventListener("click", () => openDialog(event));
-            apiEventLoader.append(eventCard);
-
-        }
-        
-
-
+        buildEventSelect(apifilterEvent);
 
         showFilterCategory();
     } catch (error) {
-        console.error("Kunde inte hämta event.se network för mer information.");
+        console.error("Kunde inte hämta event. Se network för mer information.");
         apiStatus.textContent = userMessage;
     }finally {
         loadBTN.disabled = false;
     }
+}
+
+function buildEventSelect(eventList) {
+    selectEvent.replaceChildren();
+    const firstChoice = document.createElement("option");
+    firstChoice.value = "";
+    firstChoice.textContent = "Välj ett evenemang";
+    selectEvent.appendChild(firstChoice);
+
+    eventList.forEach(ev => {
+        const option = document.createElement("option");
+        option.value = ev.id;
+        option.textContent = ev.title;
+        selectEvent.appendChild(option);
+    });
 }
 
 document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
@@ -336,30 +325,30 @@ const emailInput = document.getElementById("email");
 const phoneInput = document.getElementById("phone");
 
 // maxtak på bokning
-const eventData = [
-    {id: "code-night", max: 50, booked: 50 }, 
-    {id: "game-night", max: 50, booked: 27 },
-    {id: "movie-night", max: 100, booked: 48 }
-];
+// const eventData = [
+//     {id: "code-night", max: 50, booked: 50 }, 
+//     {id: "game-night", max: 50, booked: 27 },
+//     {id: "movie-night", max: 100, booked: 48 }
+// ];
 
-function updateEventAvailability() {
-    Array.from(selectEvent.options).forEach(option =>  {
-        const val = option.value
-        const eventItem = eventData.find(e => e.id === val);
+// function updateEventAvailability() {
+//     Array.from(selectEvent.options).forEach(option =>  {
+//         const val = option.value
+//         const eventItem = eventData.find(e => e.id === val);
 
-        if (eventItem) {
-            const remaining = eventItem.max - eventItem.booked;
-            let cleantext = option.text.split(" (")[0];
+//         if (eventItem) {
+//             const remaining = eventItem.max - eventItem.booked;
+//             let cleantext = option.text.split(" (")[0];
 
-            if (remaining <= 0) {
-                option.text = `${cleantext} - FULLBOKAT`;
-                option.disabled = true;
-            } else {
-                option.text = `${cleantext} (${remaining} platser kvar)`;
-            }
-        }
-    });
-}
+//             if (remaining <= 0) {
+//                 option.text = `${cleantext} - FULLBOKAT`;
+//                 option.disabled = true;
+//             } else {
+//                 option.text = `${cleantext} (${remaining} platser kvar)`;
+//             }
+//         }
+//     });
+// }
 
 //if (!nameInput || !emailInput || !selectEvent) {
 //    return;
@@ -367,11 +356,11 @@ function updateEventAvailability() {
 
 
 
-updateEventAvailability();
-// Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
-    if (bookingForm && feedback){
-        bookingForm.noValidate = true;
-    }
+// updateEventAvailability();
+// // Mahmoud: Stänger av inbyggda meddelanden för att visa egna, specifika fel i sidans återkoppling.
+//     if (bookingForm && feedback){
+//         bookingForm.noValidate = true;
+//     }
         
 
 // Mahmoud: Samlar felhanteringen i en funktion. aria-invalid markerar felet, aria-describedby kopplar meddelandet och focus hjälper användaren att rätta.
@@ -438,12 +427,12 @@ bookingForm.addEventListener("submit", (event) => {
         showFieldError(selectEvent, "Välj ett evenemang.");
         return;
     }
-    // --- NY KONTROLL: Kolla om evenemanget är fullbokat ---
-            const selectedEventData = eventData.find(e => e.id === eventValue);
-            if (selectedEventData && selectedEventData.booked >= selectedEventData.max) {
-                showFieldError(selectEvent, "FULLBOKAT: Det går inte att anmäla sig till detta evenemang.");
-                return;
-    }
+    // // --- NY KONTROLL: Kolla om evenemanget är fullbokat ---
+    //         const selectedEventData = eventData.find(e => e.id === eventValue);
+    //         if (selectedEventData && selectedEventData.booked >= selectedEventData.max) {
+    //             showFieldError(selectEvent, "FULLBOKAT: Det går inte att anmäla sig till detta evenemang.");
+    //             return;
+    // }
 
     const eventName =
         selectEvent.options[selectEvent.selectedIndex].text;
@@ -456,7 +445,7 @@ bookingForm.addEventListener("submit", (event) => {
 
     feedback.classList.add("success");
     bookingForm.reset();
-    updateEventAvailability();
+    // updateEventAvailability();
 });
 //});
 
