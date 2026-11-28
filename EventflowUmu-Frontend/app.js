@@ -68,7 +68,7 @@ function showFilterCategory() {
 
             eventCard.append(title, category);
             eventCard.addEventListener("click", () => openDialog(event));
-            apiEventLoader.append(eventCard);
+            apiEventList.append(eventCard);
     }
 
     if (matches.length === 0) {
@@ -384,9 +384,17 @@ function showFieldError(field, message) {
     field.setAttribute("aria-describedby", "feedback");
     field.focus();
 }
-//lyssnar efter input i telefonfältet, användaren kan bara skriva siffror
+//lyssnar efter input i telefonfältet, användaren kan bara skriva 10 siffror och automatiskt ha ett bindestreck - 
+const maxPhoneDigits = 10;
+
 phoneInput.addEventListener("input", () => {
-    phoneInput.value = phoneInput.value.replace(/\D/g, "");
+    const digits = phoneInput.value.replace(/\D/g, "").slice(0, maxPhoneDigits);
+//slice klipper ut en del av en sträng utan att ändra orginalet. sifforna delas upp i 2 delar. Index 0,1,2 - XXXX
+    if (digits.length > 3) {
+        phoneInput.value = `${digits.slice(0,3)}-${digits.slice(3)}`;
+    } else {
+        phoneInput.value = digits;
+    }
 });
 
 bookingForm.addEventListener("submit", (event) => {
@@ -421,7 +429,16 @@ bookingForm.addEventListener("submit", (event) => {
         showFieldError(phoneInput, "Ange ditt telefonnummer.");
         return;
     }
-
+// Användaren kan minst skriva 7 siffor. \D = enbart skriva siffra och /g = global, alla träffar.
+    const minPhoneDigits = 7;
+    const digitsOnly = phone.replace(/\D/g, "");
+// kontrollerar antalet siffor är mindre än 7 eller större än 10 = logiskt eller. 
+    if (digitsOnly.length < minPhoneDigits || digitsOnly.length > maxPhoneDigits) {
+        showFieldError (phoneInput, `Ange ett telefonnummer med ${minPhoneDigits}-${maxPhoneDigits} siffror, till exempel 070-1234567`
+        );
+        return;
+    }
+    
     // Mahmoud: Använder e-postfältets validity efter trimning i stället för enkel kontroll av @ och punkt. Detta kontrollerar format, inte att adressen finns.
     emailInput.value = email;
 
